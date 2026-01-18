@@ -23,6 +23,12 @@ This project helps users create ATS-friendly resumes, analyze job descriptions, 
 
 -----------------------------------------------
 
+  ## Screenshot
+
+   ![Ai_resume_and _portfolio_builder](Ai_resume_and _portfolio_builder.jpeg)
+   (Ai_resume_and _portfolio_builder2.jpeg)
+-----------------------------------------------
+
 🛠 Tech Stack
 
 Category-----	Technology
