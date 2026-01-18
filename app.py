@@ -1,8 +1,8 @@
 import streamlit as st
-from utils.processor import validate_data, draw_ats_standard, draw_modern_sidebar, draw_creative
-from utils.portfolio_generator import generate_portfolio
-from utils.prompts import *
-from utils.helper import ExtractPDF, SendRequest, CreatePDF
+from processor import validate_data, draw_ats_standard, draw_modern_sidebar, draw_creative
+from portfolio_generator import generate_portfolio
+from prompts import *
+from helper import ExtractPDF, SendRequest, CreatePDF
 
 # page config
 st.set_page_config(
@@ -245,6 +245,7 @@ with tab3:
     elif submit7:
         with st.spinner("✉️ Generating Cover Letter..."):
             generate_pdf(prompt7)
+
 
 
 
