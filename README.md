@@ -91,14 +91,13 @@ Chart & score always match
 
 
 
-🌍 Free Portfolio Hosting Platforms
+**🌍 Free Portfolio Hosting Platforms**
 
 https://base44.com
 
 
 
-
-🧠 Future Enhancements
+**🧠 Future Enhancements**
 
 Skill-wise ATS breakdown
 
@@ -110,21 +109,21 @@ PDF embedding of ATS score
 
 
 
-🤝 Contributing
+**🤝 Contributing**
 
 Contributions are welcome!
 Feel free to fork the repository and submit a pull request.
 
 
 
-📜 License
+**📜 License**
 
 This project is licensed under the MIT License.
 
 
 
 
-⭐ Support
+**⭐ Support**
 
 If you like this project:
 
