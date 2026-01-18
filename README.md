@@ -25,7 +25,8 @@ This project helps users create ATS-friendly resumes, analyze job descriptions, 
 
   ## Screenshot
   
-   ![Ai_resume_and _portfolio_builder]
+  ## **Ai_resume_and _portfolio_builder**
+   
    <img width="844" height="1402" alt="Ai_resume_and _portfolio_builder" src="https://github.com/user-attachments/assets/fdd7942d-061b-4513-8ad3-792aefc3c256" />
 
   <img width="826" height="990" alt="Ai_resume_and _portfolio_builder2" src="https://github.com/user-attachments/assets/5aa7353e-7ea6-44b4-b724-863a01f17c8b" />
@@ -34,7 +35,7 @@ This project helps users create ATS-friendly resumes, analyze job descriptions, 
    
 -----------------------------------------------
 
-🛠 Tech Stack
+##**🛠 Tech Stack**
 
 Category-----	Technology
 
@@ -52,7 +53,7 @@ Environment-----	python-dotenv
 
 ------------------------------------------------
 
-📂 Project Structure
+##📂 Project Structure
 
 AI-Resume-Builder/
 
@@ -71,7 +72,7 @@ AI-Resume-Builder/
     │── portfolio_generator.py
     
 ------------------------------------------------
-🔐 Environment Setup
+##🔐 Environment Setup
 
 Create a .env file in the root directory:
 
@@ -92,7 +93,7 @@ pip install -r requirements.txt
 streamlit run app.py
 
 ------------------------------------------------
-📊 ATS Score Logic (Overall Score)
+##📊 ATS Score Logic (Overall Score)
 
 ATS score is calculated using weighted components:
 
