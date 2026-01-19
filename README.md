@@ -1,4 +1,4 @@
-<img width="715" height="558" alt="Ai_resume_and _portfolio_builder2" src="https://github.com/user-attachments/assets/c26dd4b9-90a5-45dc-9623-d8561a27c88f" />About The Project
+About The Project
 AI-Resume-Portfolio-Builder is an GENAI-powered platform designed to optimize resumes for applicant tracking systems (ATS). By leveraging the Google Gemini LLM Model, the system enhances the likelihood of your resume passing through ATS filters and matching specific job descriptions.
 
 
