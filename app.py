@@ -4,6 +4,7 @@ from portfolio_generator import generate_portfolio
 from prompts import *
 from helper import ExtractPDF, SendRequest, CreatePDF
 
+
 # page config
 st.set_page_config(
     page_title="AI Resume Builder",
@@ -17,8 +18,7 @@ st.title("📄 AI Resume & Portfolio Builder")
 tab1, tab2, tab3 = st.tabs([
     "📝 Resume Builder",
     "🌐 Portfolio Builder",
-    "📊 Ai resume Optimizer"
-     
+    "📊 AI Resume Optimizer"    
 ])
 
 #Resume Builder
@@ -142,110 +142,91 @@ with tab2:
     
 #ATS Resume optimizer
 with tab3:
-    st.subheader("📊 ATS Resume optimizer")
+    st.subheader("🤖 ATS Resume Optimizer")
     st.markdown("Optimize your resume for ATS with AI-driven insights and personalized feedback!")
 
+    # -------- INPUTS --------
+    st.header("Job Description & Resume")
 
-    # Left Column - User Inputs (Job Description and Resume)
-    with st.container():
-        st.header("Job Description & Resume")
-        jd_input = st.text_area(
-            "Enter Job Description", 
-            placeholder="Paste the job description here.", 
-            key="text",
-            height=150,
-            help="Paste the job description for the position you're applying for."
-        )
-        
-        uploaded_file = st.file_uploader("Upload Your Resume (PDF)", type=["pdf"], label_visibility="collapsed")
-        if uploaded_file:
-            st.success("Resume uploaded successfully!")
-
-    # Middle Section: Action Buttons
-    st.header("AI-Generated Insights & Feedback")
-    st.markdown(
-        "<p style='font-size:14px; color:#777;'>Click on the buttons below to get actionable insights and recommendations.</p>",
-        unsafe_allow_html=True
+    jd_input = st.text_area(
+        "Enter Job Description",
+        placeholder="Paste the job description here...",
+        height=180
     )
 
-    # Buttons to trigger actions
-    with st.expander("Resume Analysis Options"):
-        
-        submit1 = st.button("Job Description Insights")
-        submit2 = st.button("Skills Gap Analysis")
-        submit3 = st.button("Resume Percentage Match")
-        submit4 = st.button("ATS Compatibility Check")
-        submit5 = st.button("Resume Feedback")
-        submit6 = st.button("Generate Optimized Resume")
-        submit7 = st.button("Generate Cover Letter")
+    uploaded_file = st.file_uploader(
+        "Upload Resume (PDF)",
+        type=["pdf"]
+    )
 
-    # Function to generate the response based on button clicked
-    def generate_response(prompt):
-        if uploaded_file is not None:
-            # Extract text content from the uploaded PDF resume
-            pdf_content = ExtractPDF(uploaded_file)
-            
-            # Send request to AI model with job description and resume content
-            response = SendRequest(jd_input, pdf_content, prompt)
-            
-            # Display the response from AI
-            st.subheader("Generated Response:")
-            st.write(response)
-        else:
-            st.warning("Please upload a resume to proceed!")
+    if uploaded_file:
+        st.success("Resume uploaded successfully!")
 
-    # Function to generate the optimized PDF based on button clicked
-    def generate_pdf(prompt):
-        if uploaded_file is not None:
-            # Extract text content from the uploaded PDF resume
-            pdf_content = ExtractPDF(uploaded_file)
-            
-            # Send request to AI model for optimization
-            optimized_text = SendRequest(jd_input, pdf_content, prompt)
-            
-            # Generate the optimized PDF file
-            input_filename = uploaded_file.name.split('.')[0]  # Get the original filename
-            optimized_filename = CreatePDF(optimized_text, input_filename)
-            
-            if optimized_filename:
-                with open(optimized_filename, "rb") as file:
-                    st.download_button("Click Here to Download Generated File", file, file_name=optimized_filename)
-            else: 
-                st.error("There was an issue generating the optimized resume.")
-        else:
-            st.warning("Please upload a resume to proceed!")
+    # -------- HELPER FUNCTIONS --------
+    def run_text_response(prompt, title):
+        if not uploaded_file or not jd_input:
+            st.warning("Please upload resume and paste job description.")
+            return
 
-    # Button Logic to trigger respective analysis
-    if submit1:
+        with st.spinner("⏳ Processing..."):
+            pdf_text = ExtractPDF(uploaded_file)
+            response = SendRequest(jd_input, pdf_text, prompt)
+
+        st.subheader(title)
+        st.write(response)
+
+    def run_pdf_generation(prompt, filename_prefix):
+        if not uploaded_file or not jd_input:
+            st.warning("Please upload resume and paste job description.")
+            return
+
+        with st.spinner("📄 Generating document..."):
+            pdf_text = ExtractPDF(uploaded_file)
+            optimized_text = SendRequest(jd_input, pdf_text, prompt)
+            output_file = CreatePDF(optimized_text, filename_prefix)
+
+        with open(output_file, "rb") as f:
+            st.download_button(
+                "⬇ Download PDF",
+                f,
+                file_name=output_file,
+                mime="application/pdf"
+            )
+
+        st.success("Document generated successfully!")
+
+    # -------- 7 TABS --------
+    t1,t2,t3,t4,t5,t6,t7 = st.tabs([
+        "📄JD Insights",
+        "Skills Gap",
+        "📊Match %",
+        "ATS Check",
+        "📝Resume Feedback",
+        "Optimized Resume",
+        "✉️Cover Letter"
+    ])
+
+    with t1:
         with st.spinner("⏳ Analyzing Job Description..."):
-            generate_response(prompt1)
+           # generate_response(prompt1)
+            run_text_response(prompt1, "Job Description Insights")
 
-    elif submit2:
-        with st.spinner("🔍 Performing Skills Gap Analysis..."):
-            generate_response(prompt2)
+    with t2:
+        run_text_response(prompt2, "Skills Gap Analysis")
 
-    elif submit3:
-        if uploaded_file:
-            with st.spinner("📊 Calculating ATS Score..."):
-              generate_response(prompt4)  
-           
+    with t3:
+        run_text_response(prompt3, "Resume Match Percentage")
 
-    elif submit4:
-        with st.spinner("✅ Checking ATS Compatibility..."):
-            generate_response(prompt4)
+    with t4:
+        run_text_response(prompt4, "ATS Compatibility Check")
 
-    elif submit5:
-        with st.spinner("📝 Generating Resume Feedback..."):
-            generate_response(prompt5)
+    with t5:
+        run_text_response(prompt5, "Professional Resume Feedback")
 
-    elif submit6:
-        with st.spinner("📄 Generating Optimized Resume PDF..."):
-            generate_pdf(prompt6)
+    with t6:
+        run_pdf_generation(prompt6, "Optimized_Resume")
 
-    elif submit7:
-        with st.spinner("✉️ Generating Cover Letter..."):
-            generate_pdf(prompt7)
-
-
+    with t7:
+        run_pdf_generation(prompt7, "Cover_Letter")
 
 
