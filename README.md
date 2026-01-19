@@ -31,7 +31,8 @@ This project helps users create ATS-friendly resumes, analyze job descriptions, 
 
   <img width="826" height="990" alt="Ai_resume_and _portfolio_builder2" src="https://github.com/user-attachments/assets/5aa7353e-7ea6-44b4-b724-863a01f17c8b" />
 
-![Uploading Ai_resume_and _portfolio_builder3.jpeg…]()
+<img width="893" height="863" alt="Ai_resume_and _portfolio_builder3" src="https://github.com/user-attachments/assets/94cc9e95-bbf6-4a62-ac76-33ceb4950793" />
+
 
    
 -----------------------------------------------
